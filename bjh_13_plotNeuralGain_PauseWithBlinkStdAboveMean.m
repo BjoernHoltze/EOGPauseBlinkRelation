@@ -10,7 +10,7 @@ function bjh_13_plotNeuralGain_PauseWithBlinkStdAboveMean(SOURCEDATAPATH,pathout
 % author: Björn Holtze
 % date: 11.11.22
 
-load([SOURCEDATAPATH,'attGainRosenkranz2022.mat'],'attGainRosenkranz2022');
+load([pathoutSegWithBlink,'attGainAllBlocks.mat'],'attGainAllBlocks');
 load([SOURCEDATAPATH,'subj_info_bjh_blink.mat'],'subj_info_bjh_blink');
 
 meanRndSeg = zeros(41,1);
@@ -18,7 +18,7 @@ stdRndSeg = zeros(41,1);
 pauseWithBlinkInStd = zeros(41,1);
 
 BlinkSubj = {subj_info_bjh_blink(logical(minBlinks100)).subj_id};
-RosenkranzSubj = ismember(BlinkSubj,attGainRosenkranz2022(:,1)');
+inclSubj = ismember(attGainAllBlocks(:,1)',BlinkSubj);
 
 for s = 1:size(subj_info_bjh_blink,2)
     % compute how many standard deviation the blink probability during pauses
@@ -35,21 +35,17 @@ pauseWithBlinkInStdInclS = pauseWithBlinkInStd(logical(minBlinks100));
 
 figure('Units','centimeters','Position',[2,2,7.4,7]);
 axNeural = axes;
-scatter([attGainRosenkranz2022{RosenkranzSubj,2}],pauseWithBlinkInStdInclS,5,'filled',...
+scatter([attGainAllBlocks{inclSubj,2}],pauseWithBlinkInStdInclS,5,'filled',...
     'MarkerFaceColor','k','MarkerEdgeColor','k');
 axNeural.XLabel.String = 'Neural Selective Attention Measure';
 axNeural.YLabel.String = ['Blink Probability of Attended Pauses',newline,'Relative to Average Blink Probability [STD]'];
 axNeural.XLabel.FontSize = 8;
 axNeural.YLabel.FontSize = 8;
-axNeural.XLim = [-0.005,0.016];
-axNeural.XLabel.Position(1) = 0.004;
-[r,p] = corr([attGainRosenkranz2022{RosenkranzSubj,2}]',pauseWithBlinkInStdInclS);
-title(['Relation Between Neural Measure of Attention',newline,...
-    'and Pause-Blink Measure of Attention']);
-text(0.005,6.5,['r = ',num2str(round(r,2)),', p = ',num2str(round(p,2))],'FontSize',9);
-axNeural.Position(4) = 0.7;
-axNeural.Title.Position(2) = 8.5;
+axNeural.XLabel.Position(1) = 0.003;
+[r,p] = corr([attGainAllBlocks{inclSubj,2}]',pauseWithBlinkInStdInclS);
+text(0.004,5.75,['r = ',num2str(round(r,2)),', p = ',num2str(round(p,2))],'FontSize',9);
 print(gcf,[pathoutSegWithBlink,'AttGainRosenkranz_Pause-BlinkAttentionMeasure'],'-dtiffn');
+print(gcf,[pathoutSegWithBlink,'AttGainRosenkranz_Pause-BlinkAttentionMeasure'],'-dpng','-r300');
 print(gcf,[pathoutSegWithBlink,'AttGainRosenkranz_Pause-BlinkAttentionMeasure','.eps'],'-depsc');
 close;
 

@@ -24,7 +24,7 @@
     config.det_pause_thres = 0; % switched off
     % needs to be switched off, does not work without original sound files
     config.extract_pauses = 0; % switched off
-    config.rmClosePausesAndPausesClose2Name = 1; 
+    config.rmClosePausesAndPausesClose2Name = 0; 
     % needs to be switched off, this has been done when creating the .set files for BIDS
     % raw data connot be provided due to data security of the EEG data
     config.import_select_addVEOG = 0; % switched off
@@ -40,6 +40,7 @@
     config.plotPrepauseAndPauseCompared2Random = 1;
     config.plotPrepauseVsPause = 1;
     config.plotAttSegVsIgnSeg = 1;
+    config.plotXCorrEnvelope = 1;
     config.plotCorrWithNeuralMeasure = 1;
     
 %% determine amplitude threshold for pauses
@@ -189,8 +190,13 @@
     if config.plotAttSegVsIgnSeg
         bjh_12_plotAttSegVsIgnSeg(SOURCEDATAPATH,pathoutSegWithBlink,nPerm,minBlinks100,sList,segWithBlink);
     end
+    
+%% plot cross-correlation between speech envelope and EEG (global field power, Rosenkranz 2022)
+    if config.plotXCorrEnvelope
+        bjh_13_plotXCorrEnvelope(SOURCEDATAPATH,pathoutSegWithBlink,minBlinks100,sList);
+    end
 
-%% plot correlation between chiSquare and neural measure of attention (Figure 4)
+%% plot correlation between blink-related and neural measure of attention (Figure 4)
     if config.plotCorrWithNeuralMeasure
         bjh_13_plotNeuralGain_PauseWithBlinkStdAboveMean(SOURCEDATAPATH,pathoutSegWithBlink,minBlinks100,segWithBlink);
     end
