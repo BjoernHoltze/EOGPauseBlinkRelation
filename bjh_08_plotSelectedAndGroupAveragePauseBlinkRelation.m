@@ -121,7 +121,7 @@ figure('Units','centimeters','Position',[2,2,7.4,16]);
     countIgn = histcounts(timevec(blinkRelative2PauseSorted.bjh_s12.idxTimeIgnSorted),edges);
     sp3.YLim = [0,max([countAtt,countIgn])+1];
     sp4.YLim = [0,max([countAtt,countIgn])+1];
-    titleS27 = annotation('textbox',[0.5,0.9,0.1,0.1],'String','Single Case Blink Patterns (Participant 029)',...
+    titleS27 = annotation('textbox',[0.5,0.9,0.1,0.1],'String','Single Case Blink Patterns (Participant 29)',...
         'FontSize',8,'EdgeColor','none','FontWeight','bold','HorizontalAlignment','center');
     titleS27.Position = [0.07,0.9,0.9,0.1];
    
@@ -156,7 +156,7 @@ figure('Units','centimeters','Position',[2,2,7.4,16]);
     line(cat(1,1+jitterX(selectedSubj),2+jitterX(selectedSubj)),...
         cat(2,permResults.chi2.att.stat(selectedSubj)',permResults.chi2.ign.stat(selectedSubj)')',...
         'color','r','linestyle','-');
-    [~,icons] = legend(h([1,5]),{'Critical \chi^2(19)','Participant 029'},'box','off','FontSize',7);
+    [~,icons] = legend(h([1,5]),{'Critical \chi^2(19)','Participant 29'},'box','off','FontSize',7);
     % or for Patch plots 
     icons = findobj(icons, 'type', 'patch'); % objects of legend of type patch
     set(icons, 'Markersize', 4); % set marker size as desired

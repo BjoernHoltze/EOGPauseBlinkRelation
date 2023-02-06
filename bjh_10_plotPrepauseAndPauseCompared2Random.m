@@ -52,7 +52,7 @@ lightGrey = [0.8,0.8,0.8];
             % p value = proportion of samples from random distribution larger than or equal observed value
             pValPauseAtt = sum(segWithBlinkAttSorted >= segWithBlink.pauseWithBlinkAtt(s))/...
                 size(segWithBlinkAttSorted,2);
-            title(['Participant ',sList{s},newline,...
+            title(['Participant ',num2str(str2double(sList{s})),newline,...
                 '{\color[rgb]{',num2str(lightOrange),'}p_{Prepause} = ',num2str(round(pValPrepauseAtt,3)),'}'...
                 ', {\color[rgb]{',num2str(darkOrange),'}p_{Pause} = ',num2str(round(pValPauseAtt,3)),'}']);
             % save p values
@@ -74,6 +74,7 @@ lightGrey = [0.8,0.8,0.8];
     end
     sgtitle(['Proportion of Segments with at Least One Blink',newline,'Attended Stream']);
     print(gcf,[pathoutSegWithBlink,'PrepauseAndPauseCompared2RandomAtt_nPerm',num2str(nPerm)],'-dtiffn');
+    print(gcf,[pathoutSegWithBlink,'PrepauseAndPauseCompared2RandomAtt_nPerm',num2str(nPerm)],'-dpng','-r300');
     print(gcf,[pathoutSegWithBlink,'PrepauseAndPauseCompared2RandomAtt_nPerm',num2str(nPerm),'.eps'],'-depsc');
     close;
     
@@ -103,7 +104,7 @@ lightGrey = [0.8,0.8,0.8];
             % p value = proportion of samples from random distribution larger than or equal observed value
             pValPauseIgn = sum(segWithBlinkIgnSorted >= segWithBlink.pauseWithBlinkIgn(s))/...
                 size(segWithBlinkIgnSorted,2);
-            title(['Participant ',sList{s},newline,...
+            title(['Participant ',num2str(str2double(sList{s})),newline,...
                 '{\color[rgb]{',num2str(lightBlue),'}p_{Prepause} = ',num2str(round(pValPrepauseIgn,3)),'}'...
                 ', {\color[rgb]{',num2str(darkBlue),'}p_{Pause} = ',num2str(round(pValPauseIgn,3)),'}']);
             % save p values
@@ -125,6 +126,7 @@ lightGrey = [0.8,0.8,0.8];
     end
     sgtitle(['Proportion of Segments with at Least One Blink',newline,'Ignored Stream']);
     print(gcf,[pathoutSegWithBlink,'PrepauseAndPauseCompared2RandomIgn_nPerm',num2str(nPerm)],'-dtiffn');
+    print(gcf,[pathoutSegWithBlink,'PrepauseAndPauseCompared2RandomIgn_nPerm',num2str(nPerm)],'-dpng','-r300');
     print(gcf,[pathoutSegWithBlink,'PrepauseAndPauseCompared2RandomIgn_nPerm',num2str(nPerm),'.eps'],'-depsc');
     close;
 

@@ -68,7 +68,7 @@ lightGrey = [0.8,0.8,0.8];
             xdark.Alpha = 1;
             % compute p-value of actual difference
             pValAtt = sum(propPauseMinusPropPrepauseAtt <= diffPropSwappedAttSorted)/nPerm;
-            title(['Participant ',sList{s},newline...
+            title(['Participant ',num2str(str2double(sList{s})),newline...
                 '\rm (','Difference = ',num2str(round(propPauseMinusPropPrepauseAtt,3)),...
                 ', p = ',num2str(round(pValAtt,3)),')']);
             % save p value
@@ -90,6 +90,7 @@ lightGrey = [0.8,0.8,0.8];
     sgtitle(['Difference in Proportion of Segments with at Least One Blink',newline,...
         'Pause - Prepause (Attended Stream)']);
     print(gcf,[pathoutSegWithBlink,'PrepauseVsPauseAtt_nPerm',num2str(nPerm)],'-dtiffn');
+    print(gcf,[pathoutSegWithBlink,'PrepauseVsPauseAtt_nPerm',num2str(nPerm)],'-dpng','-r300');
     print(gcf,[pathoutSegWithBlink,'PrepauseVsPauseAtt_nPerm',num2str(nPerm),'.eps'],'-depsc');
     close;
     
@@ -135,7 +136,7 @@ lightGrey = [0.8,0.8,0.8];
             xdark.Alpha = 1;
             % compute p-value of actual difference
             pValIgn = sum(propPauseMinusPropPrepauseIgn <= diffPropSwappedIgnSorted)/nPerm;
-            title(['Participant ',sList{s},newline...
+            title(['Participant ',num2str(str2double(sList{s})),newline...
                 '\rm (','Difference = ',num2str(round(propPauseMinusPropPrepauseIgn,3)),...
                 ', p = ',num2str(round(pValIgn,3)),')']);
             % save p value
@@ -157,6 +158,7 @@ lightGrey = [0.8,0.8,0.8];
     sgtitle(['Difference in Proportion of Segments with at Least One Blink',newline,...
         'Pause - Prepause (Ignored Stream)']);
     print(gcf,[pathoutSegWithBlink,'PrepauseVsPauseIgn_nPerm',num2str(nPerm)],'-dtiffn');
+    print(gcf,[pathoutSegWithBlink,'PrepauseVsPauseIgn_nPerm',num2str(nPerm)],'-dpng','-r300'); 
     print(gcf,[pathoutSegWithBlink,'PrepauseVsPauseIgn_nPerm',num2str(nPerm),'.eps'],'-depsc');
     close;
 
